@@ -1,0 +1,34 @@
+# Deploy no Coolify: "Docker Compose" apontando para este arquivo.
+# Configure SESSION_SECRET, ADMIN_PASSWORD e POSTGRES_PASSWORD nas variáveis do Coolify.
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      - SERVICE_FQDN_APP_3000
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=postgres://ecoar:${POSTGRES_PASSWORD:-ecoar}@db:5432/ecoar
+      - SESSION_SECRET=${SESSION_SECRET:?defina SESSION_SECRET}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=ecoar
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-ecoar}
+      - POSTGRES_DB=ecoar
+    volumes:
+      - ecoar-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ecoar -d ecoar"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  ecoar-db:

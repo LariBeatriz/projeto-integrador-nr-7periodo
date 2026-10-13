@@ -1,0 +1,19 @@
+{
+  "name": "ecoar",
+  "version": "1.0.0",
+  "description": "EcoAR — Jogo de reciclagem com Realidade Aumentada e Visão Computacional",
+  "main": "server/index.js",
+  "private": true,
+  "type": "commonjs",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test \"test/**/*.test.js\""
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "pg": "^8.13.1"
+  }
+}

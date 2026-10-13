@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f3d2e" />
+  <title>EcoAR — Reciclagem em Realidade Aumentada</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div id="app" aria-live="polite"></div>
+
+  <!-- Tela de jogo (fica fora do #app para manter a câmera ativa entre renderizações) -->
+  <section id="jogo" class="jogo" hidden aria-label="Partida em andamento">
+    <video id="video" class="jogo-video" playsinline muted></video>
+    <div class="jogo-fundo-virtual" id="fundo-virtual" hidden></div>
+    <canvas id="overlay" class="jogo-overlay"></canvas>
+    <div id="campo" class="jogo-campo" aria-label="Resíduos no ambiente"></div>
+
+    <header class="hud">
+      <div class="hud-item hud-tempo" title="Tempo restante">⏱ <strong id="hud-tempo">--</strong></div>
+      <div class="hud-item" title="Pontuação">⭐ <strong id="hud-pontos">0</strong></div>
+      <div class="hud-item" title="Acertos">✓ <strong id="hud-acertos">0</strong></div>
+      <div class="hud-item" title="Erros">✗ <strong id="hud-erros">0</strong></div>
+      <div class="hud-item" title="Sequência de acertos">🔥 <strong id="hud-seq">0</strong></div>
+      <button id="btn-sair" class="hud-sair" type="button">Encerrar</button>
+    </header>
+
+    <div id="status-visao" class="status-visao"></div>
+    <div id="feedback" class="feedback" role="status" hidden></div>
+
+    <footer class="base">
+      <div id="mao" class="mao" aria-live="polite">Toque em um resíduo para coletá-lo</div>
+      <div id="lixeiras" class="lixeiras" role="group" aria-label="Lixeiras"></div>
+    </footer>
+  </section>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/visao.js"></script>
+  <script src="/js/jogo.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Usado apenas localmente (o Coolify lê somente o docker-compose.yml e roteia pelo proxy).
+services:
+  app:
+    ports:
+      - "${APP_PORT:-3000}:3000"
