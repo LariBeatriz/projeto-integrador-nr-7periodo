@@ -62,19 +62,6 @@ Testes das regras de negócio:
 npm test
 ```
 
-## Deploy no Coolify
-
-1. Suba este repositório para o GitHub (ou outro Git).
-2. No Coolify, crie um recurso **Docker Compose** a partir do repositório (Build Pack: *Docker Compose*, arquivo `docker-compose.yml`).
-3. Em **Environment Variables**, defina:
-   - `SESSION_SECRET`: um valor aleatório longo (ex.: `openssl rand -hex 32`)
-   - `ADMIN_PASSWORD`: a senha da área do pesquisador
-   - `POSTGRES_PASSWORD`: a senha do banco
-4. No serviço `app`, configure o domínio (ex.: `https://ecoar.seudominio.com`). **HTTPS é obrigatório para a câmera no celular.**
-5. Faça o deploy. As tabelas são criadas automaticamente. A verificação de saúde fica em `/api/health`.
-
-Os dados ficam no volume `ecoar-db` e permanecem entre os deploys (RNF06).
-
 ## Próximas evoluções sugeridas
 
 - Marcadores ArUco para lixeiras físicas e detecção do descarte pela posição.
